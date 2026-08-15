@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>Calisthénie</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+</head>
+<body>
+
+<!-- ACCUEIL -->
+<section id="vue-accueil" class="vue active">
+  <header class="entete">
+    <h1>Calisthénie</h1>
+    <p class="serie" id="streak"></p>
+  </header>
+
+  <div class="bloc-jour">
+    <p class="surtitre">Aujourd'hui</p>
+    <button class="carte-jour" id="carte-suggeree"></button>
+  </div>
+
+  <p class="surtitre">Ou choisis</p>
+  <div class="grille" id="grille-seances"></div>
+
+  <div class="bloc-tests">
+    <p class="surtitre">Tes chiffres</p>
+    <div id="resume-tests"></div>
+    <button class="lien" onclick="montrer('vue-suivi')">Voir le suivi complet →</button>
+  </div>
+
+  <footer class="pied">
+    <p>Démos : <a href="https://www.youtube.com/@brieucledantec7422" target="_blank" rel="noopener">Brieuc Le Dantec</a></p>
+  </footer>
+</section>
+
+<!-- APERÇU D'UNE SÉANCE -->
+<section id="vue-seance" class="vue">
+  <header class="entete">
+    <button class="retour" onclick="montrer('vue-accueil')">←</button>
+    <h1 id="seance-titre"></h1>
+    <p id="seance-soustitre" class="sous"></p>
+  </header>
+  <ol class="liste-exos" id="liste-exos"></ol>
+  <div class="barre-bas">
+    <button class="principal" id="btn-demarrer">Démarrer la séance</button>
+  </div>
+</section>
+
+<!-- SÉANCE GUIDÉE -->
+<section id="vue-guide" class="vue">
+  <header class="entete-guide">
+    <button class="retour" onclick="quitterSeance()">✕</button>
+    <div class="progression"><div id="barre-progression"></div></div>
+    <span id="compteur-etape"></span>
+  </header>
+
+  <div class="scene">
+    <p class="surtitre" id="guide-phase"></p>
+    <h2 id="guide-nom"></h2>
+    <p class="objectif" id="guide-objectif"></p>
+
+    <div class="cadre-video" id="cadre-video">
+      <div id="lecteur"></div>
+      <p class="pas-de-video" id="pas-de-video">Pas de démo vidéo pour cet exercice</p>
+    </div>
+
+    <p class="cle" id="guide-cle"></p>
+    <details class="niveaux" id="guide-niveaux">
+      <summary>Trop dur ? Trop facile ?</summary>
+      <p><b>Plus facile —</b> <span id="guide-facile"></span></p>
+      <p><b>Plus dur —</b> <span id="guide-dur"></span></p>
+    </details>
+
+    <div class="chrono" id="chrono"><span id="chrono-valeur"></span><small id="chrono-label"></small></div>
+  </div>
+
+  <div class="barre-bas">
+    <button class="secondaire" id="btn-passer">Passer</button>
+    <button class="principal" id="btn-suivant">C'est fait</button>
+  </div>
+</section>
+
+<!-- SUIVI -->
+<section id="vue-suivi" class="vue">
+  <header class="entete">
+    <button class="retour" onclick="montrer('vue-accueil')">←</button>
+    <h1>Suivi</h1>
+  </header>
+
+  <p class="surtitre">Le test de départ</p>
+  <p class="aide">Refais-le à 4 et 8 semaines. Sans ces chiffres, dans deux mois tu n'auras aucune idée si ça a servi.</p>
+  <table class="tests" id="table-tests"></table>
+
+  <p class="surtitre">Séances faites</p>
+  <div id="calendrier" class="calendrier"></div>
+  <ul class="historique" id="historique"></ul>
+
+  <button class="lien danger" onclick="effacerTout()">Tout effacer</button>
+</section>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
