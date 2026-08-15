@@ -47,9 +47,10 @@ body {
   border-radius: 20px; padding: 24px; position: relative; overflow: hidden;
   border-left: 4px solid var(--accent);
 }
+.carte-jour span { display: block; }
 .carte-jour .lettre { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; }
 .carte-jour .nom { font-size: 26px; font-weight: 800; margin: 4px 0 2px; letter-spacing: -0.02em; }
-.carte-jour .detail { color: var(--gris); font-size: 14px; }
+.carte-jour .detail { color: var(--gris); font-size: 14px; padding-right: 30px; }
 .carte-jour .fleche { position: absolute; right: 22px; top: 50%; transform: translateY(-50%); font-size: 22px; color: var(--accent); }
 
 /* Grille des 4 séances */
@@ -59,8 +60,9 @@ body {
   padding: 16px; text-align: left; color: var(--texte); cursor: pointer;
   border-top: 3px solid var(--tuile-couleur, var(--accent));
 }
+.tuile span { display: block; }
 .tuile .lettre { font-size: 11px; font-weight: 700; color: var(--gris); letter-spacing: 0.1em; }
-.tuile .nom { font-size: 16px; font-weight: 700; margin-top: 2px; }
+.tuile .nom { font-size: 16px; font-weight: 700; margin-top: 2px; line-height: 1.25; }
 .tuile .nb { color: var(--gris); font-size: 13px; margin-top: 6px; }
 .tuile.faite { opacity: 0.55; }
 .tuile.faite .nb::after { content: " · fait"; color: var(--vert); }
@@ -139,12 +141,13 @@ body {
 .chrono.repos span { color: var(--vert); }
 
 /* Suivi */
-.tests { width: 100%; border-collapse: collapse; font-size: 15px; }
-.tests th, .tests td { padding: 11px 6px; text-align: left; border-bottom: 1px solid var(--trait); }
-.tests th { color: var(--gris); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.tests { width: 100%; border-collapse: collapse; font-size: 14px; table-layout: fixed; }
+.tests th, .tests td { padding: 11px 4px; text-align: left; border-bottom: 1px solid var(--trait); }
+.tests th:not(:first-child), .tests td:not(:first-child) { width: 62px; text-align: center; }
+.tests th { color: var(--gris); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
 .tests input {
-  width: 62px; background: var(--carte); border: 1px solid var(--trait); border-radius: 8px;
-  color: var(--texte); padding: 9px; font-size: 16px; text-align: center;
+  width: 100%; background: var(--carte); border: 1px solid var(--trait); border-radius: 8px;
+  color: var(--texte); padding: 9px 2px; font-size: 16px; text-align: center;
 }
 .tests input:focus { outline: 2px solid var(--accent); }
 

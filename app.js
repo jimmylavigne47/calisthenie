@@ -278,7 +278,7 @@ function arreterVideo() {
 // ---------- Suivi ----------
 function dessinerSuivi() {
   const colonnes = ["S0", "S4", "S8"];
-  const entetes = { S0: "Depart", S4: "4 semaines", S8: "8 semaines" };
+  const entetes = { S0: "Depart", S4: "4 sem.", S8: "8 sem." };
   document.getElementById("table-tests").innerHTML =
     `<tr><th>Test</th>${colonnes.map(c => `<th>${entetes[c]}</th>`).join("")}</tr>` +
     TESTS.map(t => `<tr><td>${t.label}</td>${colonnes.map(c => `
@@ -318,3 +318,6 @@ function effacerTout() {
 }
 
 dessinerAccueil();
+
+// lien direct vers une vue : .../#vue-suivi
+if (location.hash && document.getElementById(location.hash.slice(1))) montrer(location.hash.slice(1));
