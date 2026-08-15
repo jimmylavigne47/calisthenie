@@ -227,7 +227,8 @@ document.getElementById("btn-suivant").onclick = etapeSuivante;
 document.getElementById("btn-passer").onclick = etapeSuivante;
 
 // ---------- Video : on lit en boucle le segment exact de la demo ----------
-function onYouTubeIframeAPIReady() {
+function creerLecteur() {
+  if (lecteur) return;
   lecteur = new YT.Player("lecteur", {
     height: "100%", width: "100%",
     playerVars: { controls: 0, modestbranding: 1, rel: 0, playsinline: 1, disablekb: 1 },
@@ -243,6 +244,11 @@ function onYouTubeIframeAPIReady() {
     }
   });
 }
+// L'API YouTube peut etre prete AVANT que ce fichier s'execute (page en cache) :
+// dans ce cas la callback n'est jamais rappelee, donc on cree le lecteur nous-memes.
+window.onYouTubeIframeAPIReady = creerLecteur;
+if (window.YT && window.YT.Player) creerLecteur();
+
 let segmentCourant = null;
 
 function jouerVideo(v) {
