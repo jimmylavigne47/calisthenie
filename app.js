@@ -254,7 +254,16 @@ function jouerVideo(v) {
   lecteur.loadVideoById({ videoId: v.id, startSeconds: v.debut, endSeconds: v.fin });
   lecteur.mute();  // sans le mute, les navigateurs mobiles refusent la lecture auto
   lecteur.playVideo();
+  // filet : certains navigateurs bloquent la lecture tant qu'il n'y a pas eu de vrai
+  // appui. On repasse deux fois, et le prochain appui sur l'ecran relance de toute facon.
+  [1200, 3000].forEach(d => setTimeout(() => {
+    if (segmentCourant === v && lecteur.getPlayerState() !== YT.PlayerState.PLAYING) lecteur.playVideo();
+  }, d));
 }
+
+document.addEventListener("pointerdown", () => {
+  if (segmentCourant && lecteurPret && lecteur.getPlayerState() !== YT.PlayerState.PLAYING) lecteur.playVideo();
+});
 
 function arreterVideo() {
   if (lecteurPret && lecteur) lecteur.stopVideo();
